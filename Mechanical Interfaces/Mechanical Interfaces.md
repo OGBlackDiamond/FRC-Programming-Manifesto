@@ -6,11 +6,18 @@ Before you even touch the code, there are several key pieces of information that
 
 Actually using this information is a bit different depending on what is actually being used on the robot, and there are a few options that I'll cover here. Generally, though, the Spark Max is the gold standard for motor controllers, so I'll try to focus on that here. 
 
-Generally, you want to define your motor controller objects in a subsystem-by-subsystem basis. That is to say, all of the motor controllers should be defined in their respective classes. For a Spark MAX, that might look something like this:
+Generally, you want to define your motor controller objects in a subsystem-by-subsystem basis. That is to say, all of the motor controllers should be defined in their respective classes. Until the robot is actually wired and ready to go, you won't know what 'port' each controller is using, so you'll have to use a dummy value.
+
 
 ```java
 ...
 public class ExampleSubsystem extends SubsystemBase {
 
+	private final SparkMax exampleMotor = new SparkMax(
+		ExampleConstants.exampleMotorPort,
+		SparkLowLevel.MotorType.kBrushless
+	);
+
+	...
 }
 ```
